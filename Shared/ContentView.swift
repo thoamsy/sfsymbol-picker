@@ -19,8 +19,19 @@ class SFIconsList: ObservableObject {
   }
   @Published var fetching = false
 
+  var backup: [String] = []
+
   init() {
     start()
+  }
+
+  func restore() {
+    icons = backup
+  }
+
+  func toFilled() {
+    backup = icons
+    icons = icons.filter { $0.hasSuffix(".fill") }
   }
 
   var publisher: AnyCancellable?
@@ -51,7 +62,7 @@ struct ContentView: View {
   }
 
   var body: some View {
-    return VStack {
+    return NavigationView {
       if sfIcons.fetching {
         ProgressView()
       } else {
@@ -73,6 +84,20 @@ struct ContentView: View {
             .padding()
           }
         }
+        .navigationTitle(Text("Icons"))
+        .navigationBarItems(
+          trailing:
+            Menu {
+              Button("All") {
+                sfIcons.restore()
+              }
+              Button("Fiiled") {
+                sfIcons.toFilled()
+              }
+            } label: {
+              Image(systemName: "line.horizontal.3.decrease.circle")
+            }
+        )
       }
     }
   }

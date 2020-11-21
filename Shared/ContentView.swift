@@ -5,14 +5,19 @@ import Combine
 
 struct SFIcons: Codable {
   let version: Float
-  let `public`: [String]
+  let icons: [String]
 }
 
 
 class SFIconsList: ObservableObject {
   let requestURL = URL(string: "https://raw.githubusercontent.com/thoamsy/sf-icon-names/master/sf-name.json")!
 
-  @Published var icons: [String] = []
+  @Published var icons: [String] = [] {
+    didSet {
+      fetching = false
+    }
+  }
+  @Published var fetching = false
 
   init() {
     start()
@@ -22,11 +27,12 @@ class SFIconsList: ObservableObject {
 
   func start() {
     publisher?.cancel()
+    self.fetching = true
     publisher = URLSession.shared
       .dataTaskPublisher(for: requestURL)
       .map(\.data)
       .decode(type: SFIcons.self, decoder: JSONDecoder())
-      .map(\.public)
+      .map(\.icons)
       .retry(2)
       .replaceError(with: [])
       .eraseToAnyPublisher()
@@ -46,7 +52,7 @@ struct ContentView: View {
 
   var body: some View {
     return VStack {
-      if sfIcons.icons.isEmpty {
+      if sfIcons.fetching {
         ProgressView()
       } else {
         ScrollView {
@@ -64,6 +70,7 @@ struct ContentView: View {
                 .background(index == selectedIndex ? Color(UIColor.link) : Color(UIColor.secondarySystemGroupedBackground))
             }
             .font(.title2)
+            .padding()
           }
         }
       }

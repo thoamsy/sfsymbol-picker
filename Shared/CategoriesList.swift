@@ -25,7 +25,10 @@ struct CategoriesList: View {
         ProgressView()
       } else {
         List(categories, id: \.0) { (category, icons) in
-          NavigationLink(destination: ContentView(icons: icons, title: category), label: {
+          NavigationLink(
+            destination: ContentView(icons: icons)
+              .navigationBarTitle(category, displayMode: .inline),
+            label: {
             Text(category)
           })
         }.navigationTitle("Symbols")
@@ -36,6 +39,8 @@ struct CategoriesList: View {
 
 struct CategoriesList_Previews: PreviewProvider {
   static var previews: some View {
-    CategoriesList()
+    Group {
+      CategoriesList()
+    }
   }
 }

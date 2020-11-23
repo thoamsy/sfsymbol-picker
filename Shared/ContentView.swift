@@ -5,7 +5,6 @@ import Combine
 
 struct ContentView: View {
   let icons: [String]
-  let title: String
   @State private var tintColor: Color = .primary
   @State var selectedIndex = -1
 
@@ -14,9 +13,7 @@ struct ContentView: View {
   }
 
   var body: some View {
-    print(tintColor)
-    return NavigationView {
-      ScrollView {
+    return ScrollView {
         LazyVGrid(columns: columns) {
           ForEach(Array(icons.enumerated()), id: \.1) { index, name in
             VStack {
@@ -27,22 +24,34 @@ struct ContentView: View {
                   selectedIndex = index
                 }
                 .frame(width: 80, height: 80)
-                .cornerRadius(4)
                 .border(Color(UIColor.separator))
+                .cornerRadius(4)
                 .padding([.bottom], 4)
+                .contextMenu {
+                  Text("Copy Symbol Name")
+//                  Button(action: {
+//                    UIPasteboard.general.string = name
+//                  }, label: {
+//                    Text("Copy Symbol Name")
+//                  })
+                }
 
-              Text(name).foregroundColor(.primary).font(.footnote)
+              Text(name).foregroundColor(.primary).font(.footnote).lineLimit(2)
             }
             .frame(height: 120)
+
             //              .background(index == selectedIndex ? Color(UIColor.link) : Color(UIColor.secondarySystemGroupedBackground))
           }
           .font(.title2)
           .padding()
         }
       }
-      .navigationTitle(title)
-      .navigationBarItems(trailing: ColorPicker("", selection: $tintColor, supportsOpacity: false))
-    }
+      .navigationBarItems(
+        trailing: VStack {
+          ColorPicker("", selection: $tintColor, supportsOpacity: false)
+        }
+      )
+//    }
   }
 }
 

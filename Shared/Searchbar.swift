@@ -9,7 +9,8 @@ import SwiftUI
 
 struct Searchbar: View {
   @Binding var text: String
-  //  @Environment(\.colorScheme) var scheme: ColorScheme
+  var onCommit: (_ commit: String) -> Void
+  var onCancel: () -> Void
 
   @State private var isEditing = false
 
@@ -17,9 +18,13 @@ struct Searchbar: View {
     HStack {
       HStack {
         Image(systemName: "magnifyingglass")
-        TextField("Search ...", text: $text, onEditingChanged: { _ in
-          isEditing = true
-        })
+        TextField(
+          "Search ...",
+          text: $text,
+          onEditingChanged: { _ in isEditing = true }) {
+          onCommit(text.lowercased())
+        }
+        .textCase(.lowercase)
         Button(action: {
           text = ""
         }) {
@@ -38,6 +43,7 @@ struct Searchbar: View {
           UIApplication.shared.endEditing(true)
           isEditing = false
           text = ""
+          onCancel()
         }) {
           Text("Cancel")
         }
@@ -50,7 +56,9 @@ struct Searchbar: View {
 
 struct Searchbar_Previews: PreviewProvider {
   static var previews: some View {
-    Searchbar(text: .constant("foobar"))
+    Searchbar(text: .constant("foobar"), onCommit: {
+      print($0)
+    }, onCancel: {})
   }
 }
 

@@ -12,7 +12,6 @@ struct SFIconsPickerApp: App {
     var body: some Scene {
         WindowGroup {
           CategoriesList()
-//            ContentView()
         }
     }
 }

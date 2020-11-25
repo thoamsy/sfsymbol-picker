@@ -99,7 +99,7 @@ enum Associate: String {
 }
 
 
-class SFIconsList: ObservableObject {
+class SFIconsModel: ObservableObject {
   let requestURL = URL(string: "https://raw.githubusercontent.com/thoamsy/sf-icon-names/master/sf-name.json")!
 
   @Published var icons: SFIcons = SFIcons() {

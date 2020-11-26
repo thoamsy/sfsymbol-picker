@@ -19,22 +19,26 @@ struct SFCategoryIcons: View {
 
   var body: some View {
     return ScrollView {
-        LazyVGrid(columns: columns) {
-          ForEach(Array(icons.enumerated()), id: \.1) { index, name in
-            SFSymbolGridItem(
-              symbolName: name,
-              tintColor: tintColor
-            )
-          }.frame(height: 120)
-          .font(.title2)
-          .padding()
-        }.redacted(reason: shouldRedacted ? .placeholder : .init())
-      }
-      .navigationBarItems(
-        trailing: VStack {
-          ColorPicker("", selection: $tintColor, supportsOpacity: false)
+      LazyVGrid(columns: columns) {
+        ForEach(Array(icons.enumerated()), id: \.1) { index, name in
+          SFSymbolGridItem(
+            symbolName: name,
+            tintColor: index == selectedIndex ? .white : tintColor,
+            beSelected: index == selectedIndex
+          ).onTapGesture {
+            selectedIndex = index
+          }
         }
-      )
+        .frame(height: 120)
+        .font(.title2)
+        .padding()
+      }.redacted(reason: shouldRedacted ? .placeholder : .init())
+    }
+    .navigationBarItems(
+      trailing: VStack {
+        ColorPicker("", selection: $tintColor, supportsOpacity: false)
+      }
+    ).accentColor(tintColor)
   }
 }
 

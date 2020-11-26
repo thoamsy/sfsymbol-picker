@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SFSymbolGridItem: View {
   let symbolName: String
-  let tintColor: Color
+  var tintColor: Color
+  var beSelected = false
 
   var body: some View {
     VStack {
@@ -21,13 +22,16 @@ struct SFSymbolGridItem: View {
           .foregroundColor(tintColor)
           .frame(width: 60, height: 60)
       }.frame(width: 100, height: 80)
+      .background(beSelected ? Color.accentColor : Color(UIColor.systemBackground))
       .border(Color(UIColor.separator))
-      .cornerRadius(4)
+      .cornerRadius(8)
       .padding([.bottom], 4)
 
-      Text(symbolName).foregroundColor(.primary).font(.footnote).lineLimit(2)
+      Text(symbolName)
+        .foregroundColor(tintColor)
+        .font(.callout)
+        .lineLimit(2)
     }
-
   }
 }
 

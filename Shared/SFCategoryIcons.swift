@@ -4,9 +4,14 @@ import Combine
 
 
 struct SFCategoryIcons: View {
-  let icons: [String]
+  var icons: [String] = Self.defaultIcons
+
   @State private var tintColor: Color = .primary
   @State var selectedIndex = -1
+
+  var shouldRedacted = false
+
+  static let defaultIcons = Array(repeating: "photo", count: 20)
 
   var columns: [GridItem] {
     Array(repeating: .init(.adaptive(minimum: 100)), count: 4)
@@ -20,9 +25,6 @@ struct SFCategoryIcons: View {
               Image(systemName: name)
                 .renderingMode(.template)
                 .foregroundColor(tintColor)
-//                .onTapGesture {
-//                  selectedIndex = index
-//                }
                 .frame(width: 80, height: 80)
                 .border(Color(UIColor.separator))
                 .cornerRadius(4)
@@ -42,7 +44,7 @@ struct SFCategoryIcons: View {
           }
           .font(.title2)
           .padding()
-        }
+        }.redacted(reason: shouldRedacted ? .placeholder : .init())
       }
       .navigationBarItems(
         trailing: VStack {
@@ -53,4 +55,32 @@ struct SFCategoryIcons: View {
   }
 }
 
+struct SFCategoryIcons_Previews: PreviewProvider {
+  static var previews: some View {
+    SFCategoryIcons()
+  }
+}
 
+
+struct RedactingView<Input: View, Output: View>: View {
+  var content: Input
+  var modifier: (Input) -> Output
+
+  @Environment(\.redactionReasons) private var reasons
+
+  var body: some View {
+    if reasons.isEmpty {
+      content
+    } else {
+      modifier(content)
+    }
+  }
+}
+
+extension View {
+  func whenRedacted<T: View>(
+    apply modifier: @escaping (Self) -> T
+  ) -> some View {
+    RedactingView(content: self, modifier: modifier)
+  }
+}

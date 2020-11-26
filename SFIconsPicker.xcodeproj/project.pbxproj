@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		591B6E92256BFB7400CBC59A /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E91256BFB7400CBC59A /* CategoriesList.swift */; };
 		591B6E93256BFB7400CBC59A /* CategoriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E91256BFB7400CBC59A /* CategoriesList.swift */; };
-		591B6E98256BFB9000CBC59A /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E97256BFB9000CBC59A /* SFIcons.swift */; };
-		591B6E99256BFB9000CBC59A /* SFIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E97256BFB9000CBC59A /* SFIcons.swift */; };
+		591B6E98256BFB9000CBC59A /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E97256BFB9000CBC59A /* SFSymbol.swift */; };
+		591B6E99256BFB9000CBC59A /* SFSymbol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591B6E97256BFB9000CBC59A /* SFSymbol.swift */; };
 		597BFE922568BEB000635149 /* SFIconsPickerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BFE7F2568BEAE00635149 /* SFIconsPickerApp.swift */; };
 		597BFE932568BEB000635149 /* SFIconsPickerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BFE7F2568BEAE00635149 /* SFIconsPickerApp.swift */; };
 		597BFE942568BEB000635149 /* SFCategoryIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BFE802568BEAE00635149 /* SFCategoryIcons.swift */; };
@@ -23,7 +23,7 @@
 
 /* Begin PBXFileReference section */
 		591B6E91256BFB7400CBC59A /* CategoriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesList.swift; sourceTree = "<group>"; };
-		591B6E97256BFB9000CBC59A /* SFIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIcons.swift; sourceTree = "<group>"; };
+		591B6E97256BFB9000CBC59A /* SFSymbol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbol.swift; sourceTree = "<group>"; };
 		597BFE7F2568BEAE00635149 /* SFIconsPickerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFIconsPickerApp.swift; sourceTree = "<group>"; };
 		597BFE802568BEAE00635149 /* SFCategoryIcons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFCategoryIcons.swift; sourceTree = "<group>"; };
 		597BFE812568BEB000635149 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -56,7 +56,7 @@
 		591B6E96256BFB7B00CBC59A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				591B6E97256BFB9000CBC59A /* SFIcons.swift */,
+				591B6E97256BFB9000CBC59A /* SFSymbol.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -208,7 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				591B6E92256BFB7400CBC59A /* CategoriesList.swift in Sources */,
-				591B6E98256BFB9000CBC59A /* SFIcons.swift in Sources */,
+				591B6E98256BFB9000CBC59A /* SFSymbol.swift in Sources */,
 				59A8238A256D069D00360C98 /* Searchbar.swift in Sources */,
 				597BFE942568BEB000635149 /* SFCategoryIcons.swift in Sources */,
 				597BFE922568BEB000635149 /* SFIconsPickerApp.swift in Sources */,
@@ -220,7 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				591B6E93256BFB7400CBC59A /* CategoriesList.swift in Sources */,
-				591B6E99256BFB9000CBC59A /* SFIcons.swift in Sources */,
+				591B6E99256BFB9000CBC59A /* SFSymbol.swift in Sources */,
 				59A8238B256D069D00360C98 /* Searchbar.swift in Sources */,
 				597BFE952568BEB000635149 /* SFCategoryIcons.swift in Sources */,
 				597BFE932568BEB000635149 /* SFIconsPickerApp.swift in Sources */,

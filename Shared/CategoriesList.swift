@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoriesList: View {
-  @ObservedObject var sfIcons = SFIconsModel()
+  @StateObject var sfIcons = SFIconsModel()
   @State private var search = ""
   @State private var searchedIcons: [String] = []
 
@@ -18,35 +18,34 @@ struct CategoriesList: View {
 
   var body: some View {
     return NavigationView {
-      if sfIcons.fetching {
-        ProgressView()
-      } else {
-        VStack {
-          Searchbar(text: $search, onCommit: { keyword in
-            searchedIcons = allIcons.filter { $0.contains(keyword) }
-          }, onCancel: {
-            searchedIcons = []
-          })
-          if !searchedIcons.isEmpty {
-            SFCategoryIcons(icons: searchedIcons)
-          } else {
-            List {
-              Section(header: Text("Categories")) {
-                ForEach(sfIcons.icons.categories, id: \.0) { (category, categoryIcon, icons) in
-                  NavigationLink(
-                    destination: SFCategoryIcons(icons: icons)
-                      .navigationBarTitle(category, displayMode: .inline)
-                  ) {
-                    Label(category, systemImage: categoryIcon)
-                  }.frame(height: 44)
-                }
+      VStack {
+        Searchbar(text: $search, onCommit: { keyword in
+          searchedIcons = allIcons.filter { $0.contains(keyword) }
+        }, onCancel: {
+          searchedIcons = []
+        })
+        if !searchedIcons.isEmpty {
+          SFCategoryIcons(icons: searchedIcons)
+        } else {
+          List {
+            Section(header: Text("Categories")) {
+              ForEach(sfIcons.icons.categories, id: \.0) { (category, categoryIcon, icons) in
+                NavigationLink(
+                  destination:
+                    SFCategoryIcons(
+                      icons: icons,
+                      shouldRedacted: sfIcons.fetching
+                    ).navigationBarTitle(category, displayMode: .inline)
+                ) {
+                  Label(category, systemImage: categoryIcon)
+                }.frame(height: 44)
               }
             }
-            .listStyle(InsetGroupedListStyle())
           }
+          .listStyle(InsetGroupedListStyle())
         }
-        .navigationTitle("Symbols")
       }
+      .navigationTitle("Symbols")
     }
   }
 }

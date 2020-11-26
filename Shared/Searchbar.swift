@@ -24,7 +24,7 @@ struct Searchbar: View {
           onEditingChanged: { _ in isEditing = true }) {
           onCommit(text.lowercased())
         }
-        .textCase(.lowercase)
+        .autocapitalization(.none)
         Button(action: {
           text = ""
         }) {

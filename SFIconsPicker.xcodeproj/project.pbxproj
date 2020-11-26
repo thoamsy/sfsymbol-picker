@@ -35,6 +35,7 @@
 		597BFE902568BEB000635149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		597BFE912568BEB000635149 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		598C5715256FEEB400A2892A /* SFSymbolGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolGridItem.swift; sourceTree = "<group>"; };
+		598C571A256FFD0800A2892A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		59A82389256D069D00360C98 /* Searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +68,7 @@
 		597BFE792568BEAE00635149 = {
 			isa = PBXGroup;
 			children = (
+				598C571A256FFD0800A2892A /* README.md */,
 				597BFE7E2568BEAE00635149 /* Shared */,
 				597BFE882568BEB000635149 /* iOS */,
 				597BFE8F2568BEB000635149 /* macOS */,

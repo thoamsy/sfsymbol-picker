@@ -19,7 +19,6 @@ struct SFSymbolGridItem: View {
           .renderingMode(.template)
           .resizable()
           .scaledToFit()
-          .foregroundColor(tintColor)
           .frame(width: 60, height: 60)
       }.frame(width: 100, height: 80)
       .background(beSelected ? Color.accentColor : Color(UIColor.systemBackground))
@@ -28,16 +27,28 @@ struct SFSymbolGridItem: View {
       .padding([.bottom], 4)
 
       Text(symbolName)
-        .foregroundColor(tintColor)
         .font(.callout)
         .lineLimit(2)
-    }
+    }.foregroundColor(tintColor)
   }
 }
 
 struct SFSymbolGridItem_Previews: PreviewProvider {
   static var previews: some View {
-    SFSymbolGridItem(symbolName: "doc", tintColor: .primary)
+    Group {
+      SFSymbolGridItem(
+        symbolName: "doc",
+        tintColor: .primary,
+        beSelected: true
+      )
       .frame(width: 120, height: 120)
+      .colorScheme(.dark)
+      SFSymbolGridItem(
+        symbolName: "doc",
+        tintColor: .primary
+      )
+      .frame(width: 120, height: 120)
+      .colorScheme(.dark)
+    }
   }
 }

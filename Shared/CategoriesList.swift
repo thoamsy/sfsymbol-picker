@@ -54,7 +54,7 @@ struct CategoriesList_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       CategoriesList()
-      CategoriesList().environment(\.colorScheme, .dark)
+      CategoriesList().colorScheme(.dark)
     }
   }
 }

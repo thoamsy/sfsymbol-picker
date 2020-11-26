@@ -7,7 +7,7 @@ struct SFCategoryIcons: View {
   var icons: [String] = Self.defaultIcons
 
   @State private var tintColor: Color = .primary
-  @State var selectedIndex = -1
+  @AppStorage("selectedSymbolName") var selectedSymbolName = ""
 
   var shouldRedacted = false
 
@@ -17,16 +17,20 @@ struct SFCategoryIcons: View {
     Array(repeating: .init(.adaptive(minimum: 150)), count: 3)
   }
 
+  func isCurrentIconBeSelect(_ name: String) -> Bool {
+    return name == selectedSymbolName
+  }
+
   var body: some View {
     return ScrollView {
       LazyVGrid(columns: columns) {
         ForEach(Array(icons.enumerated()), id: \.1) { index, name in
           SFSymbolGridItem(
             symbolName: name,
-            tintColor: index == selectedIndex ? .white : tintColor,
-            beSelected: index == selectedIndex
+            tintColor: isCurrentIconBeSelect(name) ? .white : tintColor,
+            beSelected: isCurrentIconBeSelect(name)
           ).onTapGesture {
-            selectedIndex = index
+            selectedSymbolName = name
           }
         }
         .frame(height: 120)
@@ -38,7 +42,7 @@ struct SFCategoryIcons: View {
       trailing: VStack {
         ColorPicker("", selection: $tintColor, supportsOpacity: false)
       }
-    ).accentColor(tintColor)
+    )
   }
 }
 

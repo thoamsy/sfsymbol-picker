@@ -17,6 +17,8 @@
 		597BFE952568BEB000635149 /* SFCategoryIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BFE802568BEAE00635149 /* SFCategoryIcons.swift */; };
 		597BFE962568BEB000635149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597BFE812568BEB000635149 /* Assets.xcassets */; };
 		597BFE972568BEB000635149 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 597BFE812568BEB000635149 /* Assets.xcassets */; };
+		598C5716256FEEB400A2892A /* SFSymbolGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C5715256FEEB400A2892A /* SFSymbolGridItem.swift */; };
+		598C5717256FEEB400A2892A /* SFSymbolGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598C5715256FEEB400A2892A /* SFSymbolGridItem.swift */; };
 		59A8238A256D069D00360C98 /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A82389256D069D00360C98 /* Searchbar.swift */; };
 		59A8238B256D069D00360C98 /* Searchbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A82389256D069D00360C98 /* Searchbar.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +34,7 @@
 		597BFE8E2568BEB000635149 /* SFIconsPicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SFIconsPicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		597BFE902568BEB000635149 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		597BFE912568BEB000635149 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		598C5715256FEEB400A2892A /* SFSymbolGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbolGridItem.swift; sourceTree = "<group>"; };
 		59A82389256D069D00360C98 /* Searchbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,6 +80,7 @@
 				591B6E96256BFB7B00CBC59A /* Model */,
 				597BFE7F2568BEAE00635149 /* SFIconsPickerApp.swift */,
 				597BFE802568BEAE00635149 /* SFCategoryIcons.swift */,
+				598C5715256FEEB400A2892A /* SFSymbolGridItem.swift */,
 				59A82389256D069D00360C98 /* Searchbar.swift */,
 				597BFE812568BEB000635149 /* Assets.xcassets */,
 				591B6E91256BFB7400CBC59A /* CategoriesList.swift */,
@@ -210,6 +214,7 @@
 				591B6E92256BFB7400CBC59A /* CategoriesList.swift in Sources */,
 				591B6E98256BFB9000CBC59A /* SFSymbol.swift in Sources */,
 				59A8238A256D069D00360C98 /* Searchbar.swift in Sources */,
+				598C5716256FEEB400A2892A /* SFSymbolGridItem.swift in Sources */,
 				597BFE942568BEB000635149 /* SFCategoryIcons.swift in Sources */,
 				597BFE922568BEB000635149 /* SFIconsPickerApp.swift in Sources */,
 			);
@@ -222,6 +227,7 @@
 				591B6E93256BFB7400CBC59A /* CategoriesList.swift in Sources */,
 				591B6E99256BFB9000CBC59A /* SFSymbol.swift in Sources */,
 				59A8238B256D069D00360C98 /* Searchbar.swift in Sources */,
+				598C5717256FEEB400A2892A /* SFSymbolGridItem.swift in Sources */,
 				597BFE952568BEB000635149 /* SFCategoryIcons.swift in Sources */,
 				597BFE932568BEB000635149 /* SFIconsPickerApp.swift in Sources */,
 			);

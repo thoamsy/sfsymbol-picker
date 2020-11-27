@@ -11,6 +11,7 @@ struct CategoriesList: View {
   @StateObject var sfIcons = SFIconsModel()
   @State private var search = ""
   @State private var searchedIcons: [String] = []
+  
 
   var allIcons: [String] {
     sfIcons.icons.categories[0].icons
@@ -25,7 +26,7 @@ struct CategoriesList: View {
           searchedIcons = []
         })
         if !searchedIcons.isEmpty {
-          SFCategoryIcons(icons: searchedIcons, isMultiColor: false)
+          SFCategoryIcons(icons: searchedIcons)
         } else {
           List {
             Section(header: Text("Categories")) {
@@ -34,9 +35,10 @@ struct CategoriesList: View {
                   destination:
                     SFCategoryIcons(
                       icons: icons,
-                      isMultiColor: category == SFSymbol.Associate.MultiColor.rawValue,
                       shouldRedacted: sfIcons.fetching
-                    ).navigationBarTitle(category, displayMode: .inline)
+                    )
+                    .navigationBarTitle(category, displayMode: .inline)
+
                 ) {
                   Label(category, systemImage: categoryIcon)
                 }.frame(height: 44)

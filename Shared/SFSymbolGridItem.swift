@@ -9,18 +9,16 @@ import SwiftUI
 
 struct SFSymbolGridItem: View {
   let symbolName: String
-  var tintColor: Color
   var beSelected = false
-  var isMultiColor = false
-
+  @Binding var isMultiColor: Bool
 
   var backgroundColor: Color {
     if beSelected {
       return Color.accentColor
     }
     return isMultiColor
-      ? Color(UIColor.secondarySystemBackground)
-      : Color(UIColor.systemBackground)
+      ? Color(UIColor.secondarySystemGroupedBackground)
+      : Color(UIColor.tertiarySystemBackground)
   }
 
   var body: some View {
@@ -40,7 +38,7 @@ struct SFSymbolGridItem: View {
       Text(symbolName)
         .font(.callout)
         .lineLimit(2)
-    }.foregroundColor(tintColor)
+    }
   }
 }
 
@@ -48,16 +46,24 @@ struct SFSymbolGridItem_Previews: PreviewProvider {
   static var previews: some View {
     Group {
       SFSymbolGridItem(
-        symbolName: "wifi",
-        tintColor: .primary,
+        symbolName: "mic",
         beSelected: true,
-        isMultiColor: true
+        isMultiColor: .constant(true)
       )
       .frame(width: 120, height: 120)
       .colorScheme(.dark)
+
+      SFSymbolGridItem(
+        symbolName: "mic",
+        beSelected: false,
+        isMultiColor: .constant(true)
+      )
+      .frame(width: 120, height: 120)
+      .colorScheme(.dark)
+
       SFSymbolGridItem(
         symbolName: "wifi",
-        tintColor: .primary
+        isMultiColor: .constant(false)
       )
       .frame(width: 120, height: 120)
       .colorScheme(.dark)

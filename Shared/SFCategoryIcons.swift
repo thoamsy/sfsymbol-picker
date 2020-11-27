@@ -5,9 +5,7 @@ import Combine
 
 struct SFCategoryIcons: View {
   var icons: [String] = Self.defaultIcons
-  var isMultiColor = false
-
-  @State private var tintColor: Color = .primary
+  @SceneStorage("toggleMulticolor") var toggleMultiColor = true
   @AppStorage("selectedSymbolName") var selectedSymbolName = ""
 
   var shouldRedacted = false
@@ -28,9 +26,8 @@ struct SFCategoryIcons: View {
         ForEach(Array(icons.enumerated()), id: \.1) { index, name in
           SFSymbolGridItem(
             symbolName: name,
-            tintColor: isCurrentIconBeSelect(name) ? .white : tintColor,
             beSelected: isCurrentIconBeSelect(name),
-            isMultiColor: isMultiColor
+            isMultiColor: $toggleMultiColor
           ).onTapGesture {
             selectedSymbolName = name
           }
@@ -39,12 +36,16 @@ struct SFCategoryIcons: View {
         .font(.title2)
         .padding()
       }.redacted(reason: shouldRedacted ? .placeholder : .init())
-    }
-    .navigationBarItems(
+    }.navigationBarItems(
       trailing: VStack {
-        ColorPicker("", selection: $tintColor, supportsOpacity: false)
+        Button(action: {
+          toggleMultiColor.toggle()
+        }, label: {
+          Image(systemName: "sparkles").renderingMode(toggleMultiColor ? .original : .template)
+        })
       }
     )
+
   }
 }
 

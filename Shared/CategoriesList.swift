@@ -25,7 +25,7 @@ struct CategoriesList: View {
           searchedIcons = []
         })
         if !searchedIcons.isEmpty {
-          SFCategoryIcons(icons: searchedIcons)
+          SFCategoryIcons(icons: searchedIcons, isMultiColor: false)
         } else {
           List {
             Section(header: Text("Categories")) {
@@ -34,6 +34,7 @@ struct CategoriesList: View {
                   destination:
                     SFCategoryIcons(
                       icons: icons,
+                      isMultiColor: category == SFSymbol.Associate.MultiColor.rawValue,
                       shouldRedacted: sfIcons.fetching
                     ).navigationBarTitle(category, displayMode: .inline)
                 ) {

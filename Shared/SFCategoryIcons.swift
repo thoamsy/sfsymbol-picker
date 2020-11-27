@@ -5,6 +5,7 @@ import Combine
 
 struct SFCategoryIcons: View {
   var icons: [String] = Self.defaultIcons
+  var isMultiColor = false
 
   @State private var tintColor: Color = .primary
   @AppStorage("selectedSymbolName") var selectedSymbolName = ""
@@ -28,7 +29,8 @@ struct SFCategoryIcons: View {
           SFSymbolGridItem(
             symbolName: name,
             tintColor: isCurrentIconBeSelect(name) ? .white : tintColor,
-            beSelected: isCurrentIconBeSelect(name)
+            beSelected: isCurrentIconBeSelect(name),
+            isMultiColor: isMultiColor
           ).onTapGesture {
             selectedSymbolName = name
           }

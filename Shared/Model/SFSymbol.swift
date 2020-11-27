@@ -14,20 +14,37 @@ typealias Category = (name: String, categoryIcon: String, icons: [String])
 
 struct SFSymbol: Codable {
 //  var version: String = "1.0"
+  var MultiColor: [String] = []
   var Communication: [String] = []
   var Weather: [String] = []
-  var ObjectsAndTools: [String] = []
+//  var ObjectsAndTools: [String] = []
   var Devices: [String] = []
   var Gaming: [String] = []
+  var Connectivity: [String] = []
+  var Transportation: [String] = []
+  var Human: [String] = []
+  var Nature: [String] = []
+  var Editing: [String] = []
+  var TextFormatting: [String] = []
+  var Media: [String] = []
+  var Keyboard: [String] = []
+  var Commerce: [String] = []
+  var Time: [String] = []
+  var Health: [String] = []
+  var Shapes: [String] = []
+  var Arrows: [String] = []
+  var Indices: [String] = []
+  var Math: [String] = []
 
   var categories: [Category] {
+    print("be invoked")
     let entries = Mirror(reflecting: self).children.compactMap { (label, value) -> Category in
       let labelName = label ?? ""
       let icon = Associate(rawValue: labelName)?.icon ?? Associate.ObjectsAndTools.icon
       return (labelName, icon, value as! [String])
     }
 
-    let allIcons = entries.flatMap(\.icons)
+    let allIcons = Array(Set(entries.flatMap(\.icons)))
     return [("All", Associate.All.icon, allIcons)] + entries
   }
 
@@ -49,11 +66,14 @@ struct SFSymbol: Codable {
     case Indices
     case Math
     case All
+    case MultiColor
 
     var icon: String {
       switch self {
         case .All:
           return "rectangle.grid.2x2"
+        case .MultiColor:
+          return "paintpalette"
         case .Commuication:
           return "message"
         case .Weather:

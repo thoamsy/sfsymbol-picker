@@ -17,8 +17,8 @@ struct SFSymbolGridItem: View {
       return Color.accentColor
     }
     return isMultiColor
-      ? Color(UIColor.secondarySystemGroupedBackground)
-      : Color(UIColor.tertiarySystemBackground)
+      ? Color(UIColor.tertiarySystemGroupedBackground)
+      : Color(UIColor.secondarySystemBackground)
   }
 
   var body: some View {

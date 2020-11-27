@@ -14,7 +14,7 @@ struct CategoriesList: View {
   
 
   var allIcons: [String] {
-    sfIcons.icons.categories[0].icons
+    sfIcons.categories.first?.icons ?? []
   }
 
   var body: some View {
@@ -30,7 +30,7 @@ struct CategoriesList: View {
         } else {
           List {
             Section(header: Text("Categories")) {
-              ForEach(sfIcons.icons.categories, id: \.0) { (category, categoryIcon, icons) in
+              ForEach(sfIcons.categories, id: \.0) { (category, categoryIcon, icons) in
                 NavigationLink(
                   destination:
                     SFCategoryIcons(

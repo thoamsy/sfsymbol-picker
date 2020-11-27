@@ -12,12 +12,14 @@ import SwiftUI
 
 typealias Category = (name: String, categoryIcon: String, icons: [String])
 
+
+// FIXME: remove the duplicate
 struct SFSymbol: Codable {
-//  var version: String = "1.0"
-  var MultiColor: [String] = []
+  //  var version: String = "1.0"
+  var Multicolor: [String] = []
   var Communication: [String] = []
   var Weather: [String] = []
-//  var ObjectsAndTools: [String] = []
+  var ObjectsAndTools: [String] = []
   var Devices: [String] = []
   var Gaming: [String] = []
   var Connectivity: [String] = []
@@ -36,19 +38,6 @@ struct SFSymbol: Codable {
   var Indices: [String] = []
   var Math: [String] = []
 
-  var categories: [Category] {
-    print("be invoked")
-    let entries = Mirror(reflecting: self).children.compactMap { (label, value) -> Category in
-      let labelName = label ?? ""
-      let icon = Associate(rawValue: labelName)?.icon ?? Associate.ObjectsAndTools.icon
-      return (labelName, icon, value as! [String])
-    }
-
-    let allIcons = Array(Set(entries.flatMap(\.icons)))
-    return [("All", Associate.All.icon, allIcons)] + entries
-  }
-
-
   enum Associate: String {
     case Commuication, Weather, ObjectsAndTools, Devices, Gaming, Connectivity
     case Transportation
@@ -66,13 +55,13 @@ struct SFSymbol: Codable {
     case Indices
     case Math
     case All
-    case MultiColor
+    case Multicolor
 
     var icon: String {
       switch self {
         case .All:
           return "rectangle.grid.2x2"
-        case .MultiColor:
+        case .Multicolor:
           return "paintpalette"
         case .Commuication:
           return "message"
@@ -127,9 +116,31 @@ class SFIconsModel: ObservableObject {
   @Published var icons: SFSymbol = SFSymbol() {
     didSet {
       fetching = false
+      categories = getAllCategories()
+      multicolorSet = Set(icons.Multicolor)
     }
   }
+
   @Published var fetching = false
+
+  var categories: [Category] = []
+
+  private func getAllCategories() -> [Category] {
+    let entries = Mirror(reflecting: icons).children.compactMap { (label, value) -> Category in
+      let labelName = label ?? ""
+      let icon = SFSymbol.Associate(rawValue: labelName)?.icon ?? SFSymbol.Associate.ObjectsAndTools.icon
+      return (labelName, icon, value as! [String])
+    }
+
+    let allIcons = Array(Set(entries.flatMap(\.icons)))
+    return [("All",SFSymbol.Associate.All.icon, allIcons)] + entries
+  }
+
+  private var multicolorSet: Set<String> = Set()
+
+  func canMulticolor(of icon: String) -> Bool {
+    multicolorSet.contains(icon)
+  }
 
   init() {
     start()

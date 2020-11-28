@@ -7,6 +7,7 @@ struct SFCategoryIcons: View {
   var icons: [String] = Self.defaultIcons
   @SceneStorage("toggleMulticolor") var toggleMultiColor = true
   @AppStorage("selectedSymbolName") var selectedSymbolName = ""
+  @EnvironmentObject var sfIcons: SFIconsModel
 
   var shouldRedacted = false
 
@@ -20,29 +21,29 @@ struct SFCategoryIcons: View {
     return name == selectedSymbolName
   }
 
+
   var body: some View {
-    return ScrollView {
+    ScrollView {
       LazyVGrid(columns: columns) {
         ForEach(Array(icons.enumerated()), id: \.1) { index, name in
           SFSymbolGridItem(
             symbolName: name,
             beSelected: isCurrentIconBeSelect(name),
-            isMultiColor: $toggleMultiColor
+            isMultiColor: sfIcons.canMulticolor(of: name) ? $toggleMultiColor : .constant(false)
           ).onTapGesture {
             selectedSymbolName = name
           }
         }
-        .frame(height: 120)
+        .frame(height: 130)
         .font(.title2)
         .padding()
       }.redacted(reason: shouldRedacted ? .placeholder : .init())
     }.navigationBarItems(
-      trailing: VStack {
-        Button(action: {
-          toggleMultiColor.toggle()
-        }, label: {
-          Image(systemName: "sparkles").renderingMode(toggleMultiColor ? .original : .template)
-        })
+      trailing: NavbarButton(
+        highlightColor: Color(UIColor.tertiarySystemFill),
+        foregroundColor: .white
+      ) {
+        toggleMultiColor.toggle()
       }
     )
 

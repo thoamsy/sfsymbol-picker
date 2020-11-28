@@ -18,7 +18,7 @@ struct SFSymbolGridItem: View {
     }
     return isMultiColor
       ? Color(UIColor.tertiarySystemGroupedBackground)
-      : Color(UIColor.secondarySystemBackground)
+      : Color(UIColor.secondarySystemGroupedBackground)
   }
 
   var body: some View {
@@ -30,10 +30,13 @@ struct SFSymbolGridItem: View {
 
 
       }.frame(width: 100, height: 80)
-      .background(backgroundColor)
-      .border(Color(UIColor.separator))
-      .cornerRadius(8)
       .padding([.bottom], 4)
+      .background(backgroundColor)
+      .cornerRadius(4)
+      .overlay(
+        RoundedRectangle(cornerRadius: 4).stroke(Color(UIColor.systemGray5))
+      )
+      .foregroundColor(beSelected ? Color(UIColor.systemBackground) : Color.primary)
 
       Text(symbolName)
         .font(.callout)

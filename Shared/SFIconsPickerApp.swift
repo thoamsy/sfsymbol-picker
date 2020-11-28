@@ -11,7 +11,7 @@ import SwiftUI
 struct SFIconsPickerApp: App {
     var body: some Scene {
         WindowGroup {
-          CategoriesList()
+          CategoriesList().environmentObject(SFIconsModel())
         }
     }
 }

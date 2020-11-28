@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoriesList: View {
-  @StateObject var sfIcons = SFIconsModel()
+  @EnvironmentObject var sfIcons: SFIconsModel
   @State private var search = ""
   @State private var searchedIcons: [String] = []
   
@@ -58,6 +58,6 @@ struct CategoriesList_Previews: PreviewProvider {
     Group {
       CategoriesList()
       CategoriesList().colorScheme(.dark)
-    }
+    }.environmentObject(SFIconsModel())
   }
 }

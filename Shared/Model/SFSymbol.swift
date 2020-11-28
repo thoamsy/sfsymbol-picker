@@ -132,8 +132,17 @@ class SFIconsModel: ObservableObject {
       return (labelName, icon, value as! [String])
     }
 
-    let allIcons = Array(Set(entries.flatMap(\.icons)))
-    return [("All",SFSymbol.Associate.All.icon, allIcons)] + entries
+//    这里的 Set 会导致顺序丢失
+    let allIcons = entries.flatMap(\.icons)
+    var set: Set<String> = Set()
+    let uniqueAllIcons = allIcons.filter {
+      if !set.contains($0) {
+        set.insert($0)
+        return true
+      }
+      return false
+    }
+    return [("All",SFSymbol.Associate.All.icon, uniqueAllIcons)] + entries
   }
 
   private var multicolorSet: Set<String> = Set()
@@ -143,6 +152,7 @@ class SFIconsModel: ObservableObject {
   }
 
   init() {
+    categories = getAllCategories()
     start()
   }
 
